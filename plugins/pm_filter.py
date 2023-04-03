@@ -12,7 +12,7 @@ import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_CHAT_ID, CUSTOM_FILE_CAPTION, MSG_ALRT, PICS, AUTH_GROUPS, P_TTI_SHOW_OFF, GRP_LNK, CHNL_LNK, LOG_CHANNEL, MAX_B_TN, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, IMDB_DLT_TIME
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, IMDB_DLT_TIME, redirected_env
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
@@ -526,7 +526,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ident, file_id, rid = query.data.split("#")
 
         if int(rid) not in [query.from_user.id, 0]:
-            return await query.answer(UNAUTHORIZED_CALLBACK_TEXT, show_alert=True)
+            return await query.answer(Shari nna, show_alert=True)
 
         files_ = await get_file_details(file_id)
         if not files_:
