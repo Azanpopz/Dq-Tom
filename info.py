@@ -2,6 +2,11 @@ import re
 from os import environ
 from Script import script 
 
+
+from asyncio.log import logger
+import re
+from os import environ
+
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
     if value.lower() in ["true", "yes", "1", "enable", "y"]:
@@ -10,6 +15,19 @@ def is_enabled(value, default):
         return False
     else:
         return default
+
+
+def redirected_env(value):
+    value = str(value)
+    if value.lower() in ['chat', 'group', 'channel', 'supergroup', 'true']:
+        return 'Chat'
+    elif value.lower() in ['user', '0', 'pm', 'personal', 'bot', 'bot pm', 'false']:
+        return 'PM'
+    else:
+        return 'Chat'
+
+
+
 
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
